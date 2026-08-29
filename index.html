@@ -96,8 +96,8 @@ body {
 	
 <style id="space-warfare-mobile-web-hardening">
 html, body {
-  position: fixed;
-  inset: 0;
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -107,12 +107,7 @@ html, body {
   -webkit-touch-callout: none;
 }
 #canvas {
-  position: absolute;
-  left: env(safe-area-inset-left);
-  top: env(safe-area-inset-top);
-  width: calc(100vw - env(safe-area-inset-left) - env(safe-area-inset-right)) !important;
-  height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) !important;
-  touch-action: none !important;
+  touch-action: none;
   overscroll-behavior: none;
   -webkit-user-select: none;
   user-select: none;
@@ -137,7 +132,7 @@ html, body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":6277204,"index.wasm":37700666},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":6276964,"index.wasm":37700666},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -241,21 +236,6 @@ const engine = new Engine(GODOT_CONFIG);
 	}
 }());
 		</script>
-	
-<script id="space-warfare-mobile-input-hardening">
-(() => {
-  const canvas = document.getElementById('canvas');
-  if (!canvas) return;
-  const preventBrowserGesture = (event) => {
-    if (event.cancelable) event.preventDefault();
-  };
-  for (const type of ['touchstart', 'touchmove', 'touchend', 'touchcancel']) {
-    canvas.addEventListener(type, preventBrowserGesture, { passive: false });
-  }
-  canvas.addEventListener('contextmenu', (event) => event.preventDefault());
-})();
-</script>
-
-</body>
+	</body>
 </html>
 
